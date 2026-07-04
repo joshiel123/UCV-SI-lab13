@@ -1,7 +1,7 @@
 from src.dataset import load_data
 from src.model import create_model
 
-def test_full_pipeline():
+def test_full_xor_pipeline():
     X, y = load_data()
     model = create_model()
 
@@ -10,6 +10,7 @@ def test_full_pipeline():
 
     assert len(pred) == len(y)
     assert set(pred).issubset({0, 1})
+    assert sum(pred == y) >= 2
 
 def test_xor_dataset_shape():
     X, y = load_data()

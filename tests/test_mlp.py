@@ -53,3 +53,13 @@ def test_model_learns_xor():
 
     # El modelo debería poder resolver XOR o acercarse mucho
     assert sum(pred == y) >= 3  # al menos 3 de 4 correctas
+
+def test_model_stability():
+    X, y = load_data()
+
+    for _ in range(5):
+        model = create_model()
+        model.fit(X, y)
+        pred = model.predict(X)
+
+        assert len(pred) == 4

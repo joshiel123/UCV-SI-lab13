@@ -1,6 +1,15 @@
 from src.dataset import load_data
 from src.model import create_model
 
+def test_full_pipeline():
+    X, y = load_data()
+    model = create_model()
+
+    model.fit(X, y)
+    pred = model.predict(X)
+
+    assert len(pred) == len(y)
+    assert set(pred).issubset({0, 1})
 
 def test_xor_dataset_shape():
     X, y = load_data()
